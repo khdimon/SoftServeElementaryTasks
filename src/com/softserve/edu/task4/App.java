@@ -1,11 +1,6 @@
 package com.softserve.edu.task4;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Solves task4.
@@ -24,7 +19,6 @@ public class App {
         File file = new File(path);
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String string = "";
-        @SuppressWarnings("CheckStyle")
         char[] buffer = new char[100];
         int symbols;
         while (reader.ready()) {
@@ -79,7 +73,6 @@ public class App {
      *
      * @param args parameters of the command line
      */
-    @SuppressWarnings("CheckStyle")
     public static void main(String[] args) {
         try {
             if (args.length < 2) {
@@ -105,7 +98,6 @@ public class App {
             }
         } catch (IOException e) {
             System.out.println("Some problems with input or output have occurred.");
-            ;
         }
     }
 }

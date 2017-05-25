@@ -30,7 +30,6 @@ public class App {
      *
      * @param args parameters of the command line
      */
-    @SuppressWarnings("CheckStyle")
     public static void main(String[] args) {
         if (args.length == 0) {
             System.out.println("Enter the parameter - number.");

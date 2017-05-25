@@ -1,13 +1,23 @@
 package com.softserve.edu.task2;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Created by Dmitrij on 23.05.17.
+ * Solves task2.
+ *
+ * @author Dima Kholod
  */
 public class App {
-    public static Envelope createEnvelope(String number) throws Exception {
+    /**
+     * Requests data from user and create new envelope.
+     *
+     * @param number number of envelope
+     * @return creating envelope
+     * @throws IOException If an I/O error occurs
+     */
+    public Envelope createEnvelope(String number) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter length of side 1 of the " + number + " envelope");
         double side1 = Double.parseDouble(reader.readLine());
@@ -17,11 +27,17 @@ public class App {
         return new Envelope(side1, side2);
     }
 
+    /**
+     * Starts the program.
+     *
+     * @param args parameters of the command line
+     */
     public static void main(String[] args) {
+        App app = new App();
         while (true) {
             try {
-                Envelope first = createEnvelope("first");
-                Envelope second = createEnvelope("second");
+                Envelope first = app.createEnvelope("first");
+                Envelope second = app.createEnvelope("second");
                 if (first.canPutInto(second))
                     System.out.println("The first envelope can be put into the second envelope.");
                 else if (second.canPutInto(first))
@@ -34,7 +50,9 @@ public class App {
                 String answer = reader.readLine();
                 if (!answer.equalsIgnoreCase("yes") && !answer.equalsIgnoreCase("y"))
                     break;
-            } catch (Exception e) {
+            } catch (IOException e) {
+                System.out.println("Some problems with input or output have occurred.");
+            } catch (NumberFormatException e) {
                 System.out.println("Incorrect input.");
             }
         }

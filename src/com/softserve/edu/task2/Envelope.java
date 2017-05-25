@@ -1,12 +1,20 @@
 package com.softserve.edu.task2;
 
 /**
- * Created by Dmitrij on 23.05.17.
+ * Represents envelope.
+ *
+ * @author Dima Kholod
  */
 public class Envelope {
     private double width;
     private double length;
 
+    /**
+     * Creates envelope with give width and length.
+     *
+     * @param side1 length of first side
+     * @param side2 length of second side
+     */
     public Envelope(double side1, double side2) {
         if (side1 > side2) {
             this.length = side1;
@@ -17,6 +25,12 @@ public class Envelope {
         }
     }
 
+    /**
+     * Checks can this envelope be put into other envelope.
+     *
+     * @param other other envelope
+     * @return result of checking
+     */
     public boolean canPutInto(Envelope other) {
         return this.length < other.length && this.width < other.width;
     }

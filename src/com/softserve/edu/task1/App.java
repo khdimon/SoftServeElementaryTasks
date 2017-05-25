@@ -1,10 +1,17 @@
 package com.softserve.edu.task1;
 
 /**
- * Created by Dmitrij on 23.05.17.
+ * Solves task4.
+ *
+ * @author Dima Kholod
  */
 public class App {
 
+    /**
+     * Starts the program.
+     *
+     * @param args parameters of the command line
+     */
     public static void main(String[] args) {
         if (args.length < 2) {
             System.out.println("You must input two parameters: height and width.");

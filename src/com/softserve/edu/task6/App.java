@@ -15,9 +15,7 @@ public class App {
      */
     public int countLuckyTicketsMoskow() {
         int result = 0;
-        //noinspection CheckStyle
         for (int i = 0; i < 1000; i++) {
-            //noinspection CheckStyle
             for (int j = 0; j < 1000; j++) {
                 if (getDigitsSum(i) == getDigitsSum(j)) {
                     result++;
@@ -34,12 +32,10 @@ public class App {
      * @param number given number
      * @return sum of digits
      */
-    private int getDigitsSum(@SuppressWarnings("CheckStyle") int number) {
+    private int getDigitsSum(int number) {
         int result = 0;
         while (number > 0) {
-            //noinspection CheckStyle
             result += number % 10;
-            //noinspection CheckStyle
             number = number / 10;
         }
         return result;
@@ -52,24 +48,21 @@ public class App {
      * @param evenOrOdd even (evenOrOdd = 0) or odd (evenOrOdd = 1) digits must be summed
      * @return sum of odd or even digits
      */
-    private int getDigitsSum(@SuppressWarnings("CheckStyle") int number, final int evenOrOdd) {
+    private int getDigitsSum(int number, final int evenOrOdd) {
         if (evenOrOdd != 0 && evenOrOdd != 1) {
             return 0;
         }
 
         int result = 0;
         while (number > 0) {
-            //noinspection CheckStyle
             int digit = number % 10;
             if (digit % 2 == evenOrOdd) {
                 result += digit;
             }
-            //noinspection CheckStyle
             number = number / 10;
         }
         return result;
     }
-
 
     /**
      * Counts lucky tickets by Piter algorithm.
@@ -78,7 +71,6 @@ public class App {
      */
     public int countLuckyTicketsPiter() {
         int result = 0;
-        //noinspection CheckStyle
         for (int i = 0; i < 1000000; i++) {
             if (getDigitsSum(i, 0) == getDigitsSum(i, 1)) {
                 result++;
@@ -93,7 +85,7 @@ public class App {
      *
      * @param args parameters of the command line
      */
-    public static void main(@SuppressWarnings("CheckStyle") String[] args) {
+    public static void main(String[] args) {
         if (args.length == 0) {
             System.out.println("Enter path to the file with key.");
             return;
