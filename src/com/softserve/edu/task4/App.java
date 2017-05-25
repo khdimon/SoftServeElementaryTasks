@@ -1,4 +1,3 @@
-
 package com.softserve.edu.task4;
 
 import java.io.BufferedReader;
@@ -10,10 +9,13 @@ import java.io.IOException;
 
 /**
  * Solve task4.
+ *
+ * @author Dima Kholod
  */
 public class App {
     /**
      * Reads file to string and returns it.
+     *
      * @param path the path to the file
      * @return result string
      * @throws IOException If an I/O error occurs
@@ -36,6 +38,7 @@ public class App {
 
     /**
      * Counts occurrences of the target string in given string.
+     *
      * @param source string that we seek occurrences of target string in
      * @param target string that occurrences we seek
      * @return count of occurrences
@@ -57,11 +60,13 @@ public class App {
 
     /**
      * Writes string into the file.
-     * @param path path to the file
+     *
+     * @param path    path to the file
      * @param content given string
      * @throws IOException If an I/O error occurs
      */
-    public void writeFile(final String path, final String content) throws IOException {
+    public void writeFile(final String path, final String content)
+            throws IOException {
         File file = new File(path);
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
         writer.write(content);
@@ -71,6 +76,7 @@ public class App {
 
     /**
      * Starts the program.
+     *
      * @param args parameters of the command line
      */
     @SuppressWarnings("CheckStyle")
@@ -98,7 +104,8 @@ public class App {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Some problems with input or output have occurred.");;
+            System.out.println("Some problems with input or output have occurred.");
+            ;
         }
     }
 }
