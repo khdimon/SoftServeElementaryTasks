@@ -1,7 +1,7 @@
 package com.softserve.edu.task7;
 
 /**
- * Solve task7.
+ * Solves task7.
  *
  * @author Dima Kholod
  */

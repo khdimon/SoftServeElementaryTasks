@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * Solve task4.
+ * Solves task4.
  *
  * @author Dima Kholod
  */
@@ -41,7 +41,7 @@ public class App {
      *
      * @param source string that we seek occurrences of target string in
      * @param target string that occurrences we seek
-     * @return count of occurrences
+     * @return quantity of occurrences
      */
     public int countOccurrences(final String source, final String target) {
         int number = 0;
