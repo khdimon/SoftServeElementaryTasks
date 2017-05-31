@@ -3,81 +3,53 @@ package com.softserve.edu.task6;
 import java.io.*;
 
 /**
- * Solves task6.
+ * Номер билета - шестизначное число.
+ * Нужно написать консольное приложение,
+ * которое может посчитать количество счастливых билетов.
+ * Для выбора алгоритма подсчёта читается текстовый файл.
+ * Путь к текстовому файлу задаётся в консоли после запуска программы.
+ * Индикаторы алгоритмов:
+ * 1 - слово 'Moskow'
+ * 2 - слово 'Piter'
+ * После задания всех необходимых параметров,
+ * программа в консоль должна вывести количество счастливых билетов
+ * для указанного способа подсчёта.
  *
  * @author Dima Kholod
  */
 public class App {
     /**
-     * Counts lucky tickets by Moskow algorithm.
+     * Counts lucky tickets by algorithm given key.
      *
-     * @return quantity of lucky tickets
+     * @param key given algorithm
+     * @return counts of lucky tickets.
      */
-    public int countLuckyTicketsMoskow() {
-        int result = 0;
-        for (int i = 0; i < 1000; i++) {
-            for (int j = 0; j < 1000; j++) {
-                if (getDigitsSum(i) == getDigitsSum(j)) {
-                    result++;
-                }
-            }
-        }
-
-        return result;
-    }
-
-    /**
-     * Returns sum of this number digits.
-     *
-     * @param number given number
-     * @return sum of digits
-     */
-    private int getDigitsSum(int number) {
-        int result = 0;
-        while (number > 0) {
-            result += number % 10;
-            number = number / 10;
-        }
-        return result;
-    }
-
-    /**
-     * Returns sum of this number odd or even digits.
-     *
-     * @param number    given number
-     * @param evenOrOdd even (evenOrOdd = 0) or odd (evenOrOdd = 1) digits must be summed
-     * @return sum of odd or even digits
-     */
-    private int getDigitsSum(int number, final int evenOrOdd) {
-        if (evenOrOdd != 0 && evenOrOdd != 1) {
-            return 0;
-        }
-
-        int result = 0;
-        while (number > 0) {
-            int digit = number % 10;
-            if (digit % 2 == evenOrOdd) {
-                result += digit;
-            }
-            number = number / 10;
-        }
-        return result;
-    }
-
-    /**
-     * Counts lucky tickets by Piter algorithm.
-     *
-     * @return quantity of lucky tickets
-     */
-    public int countLuckyTicketsPiter() {
-        int result = 0;
+    public int countLuckyTickets(String key) {
+        int count = 0;
         for (int i = 0; i < 1000000; i++) {
-            if (getDigitsSum(i, 0) == getDigitsSum(i, 1)) {
-                result++;
+            int[] digits = {0, 0, 0, 0, 0, 0};
+            int number = i;
+            int j = 5;
+            while (number > 0) {
+                digits[j] = number % 10;
+                number = number / 10;
+                j--;
+            }
+
+            if (key.equals("Moskow")
+                    && (digits[0] + digits[1] + digits[2])
+                    == (digits[3] + digits[4] + digits[5])) {
+                count++;
+            }
+
+            if (key.equals("Piter")
+                    && (digits[0] + digits[2] + digits[4])
+                    == (digits[1] + digits[3] + digits[5])) {
+                count++;
             }
         }
 
-        return result;
+        return count;
     }
 
     /**
@@ -86,14 +58,21 @@ public class App {
      * @param args parameters of the command line
      */
     public static void main(String[] args) {
-        if (args.length == 0) {
-            System.out.println("Enter path to the file with key.");
-            return;
+
+        System.out.println("Enter path to the file with key.");
+        BufferedReader pathReader =
+                new BufferedReader(new InputStreamReader(System.in));
+        String path = "";
+        try {
+            path = pathReader.readLine();
+        } catch (IOException e) {
+            System.out.println("An input/output error has occurred");
         }
 
         App app = new App();
+        File file = new File(path);
         String key = "";
-        File file = new File(args[0]);
+
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
             key = reader.readLine();
@@ -103,12 +82,10 @@ public class App {
         } catch (IOException e) {
             System.out.println("An input/output error has occurred");
         }
-        if (key.equals("Moskow")) {
-            System.out.println("Quantity of lucky tickets by Moskow algorithm is "
-                    + app.countLuckyTicketsMoskow());
-        } else if (key.equals("Piter")) {
-            System.out.println("Quantity of lucky tickets by Piter algorithm is "
-                    + app.countLuckyTicketsPiter());
+
+        if (key.equals("Moskow") || key.equals("Piter")) {
+            System.out.println("Quantity of lucky tickets by algorithm "
+                    + key + " is " + app.countLuckyTickets(key));
         } else {
             System.out.println("Incorrect key.");
         }

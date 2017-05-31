@@ -1,7 +1,14 @@
 package com.softserve.edu.task1;
 
 /**
- * Solves task4.
+ * To print chess board with given height and width.
+ * <p>
+ * *  *  *  *  *  *
+ *  *  *  *  *  *
+ * *  *  *  *  *  *
+ *  *  *  *  *  *
+ * <p>
+ * 2 parameters are given in command line.
  *
  * @author Dima Kholod
  */
@@ -14,7 +21,8 @@ public class App {
      */
     public static void main(String[] args) {
         if (args.length < 2) {
-            System.out.println("You must input two parameters: height and width.");
+            System.out.println("You must input two parameters: "
+                    + "height and width.");
             return;
         }
 

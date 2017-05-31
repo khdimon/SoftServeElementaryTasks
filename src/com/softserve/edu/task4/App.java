@@ -3,7 +3,12 @@ package com.softserve.edu.task4;
 import java.io.*;
 
 /**
- * Solves task4.
+ * Нужно написать программу, которая будет иметь два режима:
+ * 1. Считать количество вхождений строки в текстовом файле.
+ * 2. Делать замену строки на другую в указанном файле
+ * Программа должна принимать аргументы на вход при запуске:
+ * 1. (путь к файлу) (строка для подсчёта)
+ * 2. (путь к файлу) (строка для поиска) (строка для замены)
  *
  * @author Dima Kholod
  */
@@ -75,9 +80,12 @@ public class App {
      */
     public static void main(String[] args) {
         try {
-            if (args.length < 2) {
-                System.out.println("Enter: \"<Path to the file> <target string>\" to count occurrences"
-                        + "\nor \"<Path to the file> <target string> <string for replacement>\" to replacement");
+            if (args.length != 2 && args.length != 3) {
+                System.out.println("Enter:"
+                        + " \"<Path to the file> <target string>\""
+                        + " to count occurrences\n"
+                        + "or \"<Path to the file> <target string>"
+                        + " <string for replacement>\" to replacement");
                 return;
             }
 
@@ -85,19 +93,24 @@ public class App {
             String content = app.readFile(args[0]);
 
             if (args.length == 2) {
-                System.out.printf("Count of occurrences of string \"%s\": ", args[1]);
+                System.out.printf("Count of occurrences of string \"%s\": ",
+                        args[1]);
                 System.out.println(app.countOccurrences(content, args[1]));
             } else {
                 if (!content.contains(args[1])) {
-                    System.out.printf("The string \"%s\" is absent in the file.%n", args[1]);
+                    System.out.printf("The string \"%s\""
+                            + " is absent in the file.%n", args[1]);
                 } else {
                     content = content.replace(args[1], args[2]);
                     app.writeFile(args[0], content);
-                    System.out.printf("All occurrences of string \"%s\" have been replaced on \"%s\".%n", args[1], args[2]);
+                    System.out.printf("All occurrences of string \"%s\" "
+                                    + "have been replaced on \"%s\".%n",
+                            args[1], args[2]);
                 }
             }
         } catch (IOException e) {
-            System.out.println("Some problems with input or output have occurred.");
+            System.out.println("Some problems with input or output"
+                    + " have occurred.");
         }
     }
 }
