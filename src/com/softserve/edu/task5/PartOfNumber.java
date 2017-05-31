@@ -98,7 +98,8 @@ public class PartOfNumber {
             indexName = INDEXES_3[index];
         }
 
-        representation = numberName + " " + indexName;
+        representation = (numberName + " " + indexName)
+                .replaceAll("\\s+", " ");
     }
 
     /**
@@ -106,8 +107,7 @@ public class PartOfNumber {
      *
      * @return representation of this part of number in words
      */
-    @Override
-    public String toString() {
+    public String getRepresentation() {
         return representation;
     }
 }

@@ -71,12 +71,14 @@ public class App {
     }
 
     /**
-     * Returns given number in words.
+     * Returns number from arguments in words.
      *
-     * @param number given number
+     * @param args given arguments
      * @return number in words
      */
-    private String getNumberInWords(String number) {
+    public String getNumberInWords(String[] args) {
+        String number = getNumber(args);
+
         if (number.matches("-?0+")) {
             return ZERO;
         }
@@ -89,7 +91,7 @@ public class App {
 
         List<PartOfNumber> parts = getPartsOfNumber(number);
         for (PartOfNumber part : parts) {
-            result = result + " " + part;
+            result = result + " " + part.getRepresentation();
         }
 
         result = result.replaceAll("\\s+", " ").trim();
@@ -99,7 +101,7 @@ public class App {
     }
 
     /**
-     * Runs program. In command line it is necessary
+     * Runs the program. In command line it is necessary
      * to enter 1 argument: integer number
      * that we want to convert into words.
      *
@@ -107,14 +109,14 @@ public class App {
      */
     public static void main(String[] args) {
         App app = new App();
-        String number = "";
+        String numberInWords = "";
         try {
-            number = app.getNumber(args);
+            numberInWords = app.getNumberInWords(args);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             app.printInstruction();
             return;
         }
-        System.out.println(app.getNumberInWords(number));
+        System.out.println(numberInWords);
     }
 }
