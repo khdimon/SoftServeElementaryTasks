@@ -47,7 +47,7 @@ public class App {
         int index = 0;
         while (true) {
             index = source.indexOf(target, index);
-            if (index > 0) {
+            if (index >= 0) {
                 number++;
                 index++;
             } else {
@@ -64,13 +64,12 @@ public class App {
      * @param content given string
      * @throws IOException If an I/O error occurs
      */
-    public void writeFile(final String path, final String content)
+    public void writeFile(final Writer writer, final String content)
             throws IOException {
-        File file = new File(path);
-        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-        writer.write(content);
-        writer.flush();
-        writer.close();
+        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+        bufferedWriter.write(content);
+        bufferedWriter.flush();
+        bufferedWriter.close();
     }
 
     /**
@@ -102,7 +101,9 @@ public class App {
                             + " is absent in the file.%n", args[1]);
                 } else {
                     content = content.replace(args[1], args[2]);
-                    app.writeFile(args[0], content);
+
+                    Writer writer = new FileWriter(args[0]);
+                    app.writeFile(writer, content);
                     System.out.printf("All occurrences of string \"%s\" "
                                     + "have been replaced on \"%s\".%n",
                             args[1], args[2]);

@@ -19,7 +19,7 @@ import java.io.*;
  */
 public class App {
     /**
-     * Counts lucky tickets by algorithm given key.
+     * Counts lucky tickets by the given algorithm.
      *
      * @param key given algorithm
      * @return counts of lucky tickets.

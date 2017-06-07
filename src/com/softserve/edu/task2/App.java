@@ -29,9 +29,11 @@ public class App {
     public Envelope createEnvelope(String number) throws IOException {
         BufferedReader reader =
                 new BufferedReader(new InputStreamReader(System.in));
+
         System.out.println("Enter length of side 1 of the "
                 + number + " envelope");
         double side1 = Double.parseDouble(reader.readLine());
+
         System.out.println("Enter length of side 2 of the "
                 + number + " envelope");
         double side2 = Double.parseDouble(reader.readLine());

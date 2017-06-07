@@ -21,17 +21,27 @@ public class Triangle {
      * @param c    length of side c
      */
     public Triangle(String name, double a, double b, double c) {
-        this.name = name;
-        if (a + b <= c || a + c <= b || b + c <= a) {
+        if (!Triangle.isSidesCorrect(a, b, c)) {
             throw new IllegalArgumentException("Incorrect length of sides:"
                     + " any two sides must be larger than the third side");
         }
+
+        this.name = name;
         this.a = a;
         this.b = b;
         this.c = c;
+    }
 
-        double p = (a + b + c) / 2;
-        area = Math.sqrt(p * (p - a) * (p - b) * (p - c));
+    /**
+     * Checks can we create triangle with given sides.
+     *
+     * @param a the first side
+     * @param b the second side
+     * @param c the third side
+     * @return the result of checking
+     */
+    public static boolean isSidesCorrect(double a, double b, double c) {
+        return (a + b > c && a + c > b && b + c > a);
     }
 
     /**
@@ -40,6 +50,10 @@ public class Triangle {
      * @return area of this triangle
      */
     public double getArea() {
+        if (area == 0) {
+            double p = (a + b + c) / 2;
+            area = Math.sqrt(p * (p - a) * (p - b) * (p - c));
+        }
         return area;
     }
 

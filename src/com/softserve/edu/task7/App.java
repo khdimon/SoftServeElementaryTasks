@@ -9,16 +9,17 @@ package com.softserve.edu.task7;
  */
 public class App {
     /**
-     * Prints numbers that are less than given number.
+     * Prints numbers that are less or equal than given number.
      *
      * @param number number that we print numbers less than
      */
     public void printNumbers(final int number) {
-        if (number < 2) {
+        if (number < 1) {
             System.out.println("Nothing to show.");
         }
-        for (int i = 1; i < number; i++) {
-            if (i == number - 1) {
+
+        for (int i = 1; i <= number; i++) {
+            if (i == number) {
                 System.out.print(i);
             } else {
                 System.out.print(i + ", ");
@@ -28,29 +29,50 @@ public class App {
     }
 
     /**
+     * For given number n calculates integer number
+     * that is max number that we must print.
+     *
+     * @param n given number
+     * @return calculated number
+     */
+    public int getMaxNumber(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        double sqrt = Math.sqrt(n);
+        int maxNumber = (int) sqrt;
+        if (maxNumber < sqrt) {
+            return maxNumber;
+        } else {
+            return maxNumber - 1;
+        }
+    }
+
+    /**
      * Starts the program.
      *
      * @param args parameters of the command line
      */
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.out.println("Enter the parameter - number.");
+            System.out.println("Enter the parameter - integer number.");
             return;
         }
+
         App app = new App();
+
         try {
-            double d = Double.parseDouble(args[0]);
-            if (d < 0) {
+            int n = Integer.parseInt(args[0]);
+
+            if (n < 0) {
                 System.out.println("Number can't be negative.");
                 return;
             }
-            double sqrt = Math.sqrt(d);
-            int n = (int) sqrt;
-            if (n == sqrt) {
-                app.printNumbers(n);
-            } else {
-                app.printNumbers(n + 1);
-            }
+
+            int maxNumber = app.getMaxNumber(n);
+            app.printNumbers(maxNumber);
+
         } catch (NumberFormatException e) {
             System.out.println("Wrong format of number.");
         }
