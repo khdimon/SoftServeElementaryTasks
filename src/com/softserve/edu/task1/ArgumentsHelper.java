@@ -1,44 +1,98 @@
 package com.softserve.edu.task1;
 
+import org.apache.commons.lang3.tuple.*;
+
+import java.util.Optional;
+
 /**
  * Contains methods for work with args of command line.
  */
 public class ArgumentsHelper {
-    public static final String INSTRUCTION =
-            "You must input two integer parameters: height and width";
+    private static final String INSTRUCTIONS =
+            "You must specify the parameters: "
+                    + "two positive integer numbers - height and width";
+
+    private String[] args;
 
     /**
-     * Checks is number of args correct.
+     * Creates new instance of ArgumentsHelper with given args.
+     *
+     * @param args given args
+     */
+    public ArgumentsHelper(String[] args) {
+        this.args = args;
+    }
+
+    /**
+     * Checks whether the number of args is correct.
      *
      * @return result of checking
      */
-    public boolean isArgumentsNumberCorrect(String[] args) {
+    private boolean isArgumentsNumberCorrect() {
         if (args.length == 2) {
             return true;
         } else {
             System.out.println("Incorrect number of args");
-            System.out.println(INSTRUCTION);
+            printInstructions();
             return false;
         }
     }
 
     /**
-     * Converts args into int array and returns it.
-     * If NumberFormatException occurs returns null.
+     * Checks whether the format of args is correct.
      *
-     * @return result array or null
+     * @return result of checking
      */
-    public int[] convertArgumentsToInt(String[] args) {
-        int[] result = new int[args.length];
-        try {
-            for (int i = 0; i < args.length; i++) {
-                result[i] = Integer.parseInt(args[i]);
+    private boolean isArgumentsFormatCorrect() {
+        boolean isCorrect = true;
+
+        for (String arg : args) {
+            if (!arg.matches("\\d+")) {
+                isCorrect = false;
+                break;
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Incorrect format of args");
-            System.out.println(INSTRUCTION);
-            return null;
         }
-        return result;
+
+        if (!isCorrect) {
+            System.out.println("Incorrect format of args");
+            printInstructions();
+        }
+
+        return isCorrect;
+    }
+
+    /**
+     * Checks whether the args are correct.
+     *
+     * @return result of checking
+     */
+    private boolean isArgumentsCorrect() {
+        return isArgumentsNumberCorrect()
+                && isArgumentsFormatCorrect();
+    }
+
+    /**
+     * Prints instructions
+     */
+    public void printInstructions() {
+        System.out.println(INSTRUCTIONS);
+    }
+
+    /**
+     * Returns an Optional of pair of values gotten from args.
+     * If args is incorrect returns an empty Optional.
+     *
+     * @return Optional with values or empty Optional
+     */
+    public Optional<Pair<Integer, Integer>> getValues() {
+        Pair<Integer, Integer> resultPair = null;
+
+        if (isArgumentsCorrect()) {
+            int left = Integer.parseInt(args[0]);
+            int right = Integer.parseInt(args[1]);
+            resultPair = new ImmutablePair<>(left, right);
+        }
+
+        return Optional.ofNullable(resultPair);
     }
 }

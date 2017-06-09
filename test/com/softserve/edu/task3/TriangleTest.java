@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TriangleTest {
-    @Test
+   /* @Test
     public void isSidesCorrect_CorrectSides_TrueReturned()
             throws Exception {
         //Arrange
@@ -48,5 +48,5 @@ public class TriangleTest {
         //Assert
         assertEquals(expectedArea, actualArea, 0.000001);
     }
-
+*/
 }

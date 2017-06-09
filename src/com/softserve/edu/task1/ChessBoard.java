@@ -10,10 +10,15 @@ public class ChessBoard {
     /**
      * Creates new instance of ChessBoard with given height and width.
      *
-     * @param height given height
-     * @param width given width
+     * @param height given height, must be positive
+     * @param width  given width, must be positive
      */
     public ChessBoard(int height, int width) {
+        if (height <= 0 || width <= 0) {
+            throw new IllegalArgumentException(
+                    "Height and width must be positive");
+        }
+
         this.height = height;
         this.width = width;
     }

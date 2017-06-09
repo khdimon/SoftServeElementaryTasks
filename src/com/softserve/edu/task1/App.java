@@ -1,5 +1,9 @@
 package com.softserve.edu.task1;
 
+import org.apache.commons.lang3.tuple.Pair;
+
+import java.util.Optional;
+
 /**
  * To print chess board with given height and width.
  * <p>
@@ -20,16 +24,16 @@ public class App {
      * @param args parameters of the command line
      */
     public static void main(String[] args) {
-        ArgumentsHelper helper = new ArgumentsHelper();
+        ArgumentsHelper helper = new ArgumentsHelper(args);
 
-        if (!helper.isArgumentsNumberCorrect(args)) {
+        Optional<Pair<Integer, Integer>> values = helper.getValues();
+
+        if (!values.isPresent()) {
             return;
         }
 
-        int[] intArgs = helper.convertArgumentsToInt(args);
-        if (intArgs != null) {
-            ChessBoard board = new ChessBoard(intArgs[0], intArgs[1]);
-            board.print();
-        }
+        ChessBoard board = new ChessBoard(values.get().getLeft(),
+                values.get().getRight());
+        board.print();
     }
 }

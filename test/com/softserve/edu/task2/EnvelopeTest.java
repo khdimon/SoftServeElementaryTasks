@@ -9,8 +9,8 @@ public class EnvelopeTest {
     public void canPutInto_ThisEnvelopeCouldBePutIntoAnother_TrueReturned()
             throws Exception {
         //Arrange
-        Envelope thisEnvelope = new Envelope(5.0, 5.0);
-        Envelope anotherEnvelope = new Envelope(5.5, 6.0);
+        Envelope thisEnvelope = new Envelope("a", 5.0, 5.0);
+        Envelope anotherEnvelope = new Envelope("b", 5.5, 6.0);
 
         //Act
         boolean actualResult = thisEnvelope.canPutInto(anotherEnvelope);
@@ -23,8 +23,8 @@ public class EnvelopeTest {
     public void canPutInto_ThisEnvelopeCouldNotBePutIntoAnother_TrueReturned()
             throws Exception {
         //Arrange
-        Envelope thisEnvelope = new Envelope(5.0, 5.0);
-        Envelope anotherEnvelope = new Envelope(4.0, 6.0);
+        Envelope thisEnvelope = new Envelope("a", 5.0, 5.0);
+        Envelope anotherEnvelope = new Envelope("b", 4.0, 6.0);
 
         //Act
         boolean actualResult = thisEnvelope.canPutInto(anotherEnvelope);

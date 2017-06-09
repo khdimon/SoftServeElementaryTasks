@@ -25,7 +25,7 @@ public class AppTest {
         assertEquals(expectedResult, actualResult);
     }
 
-    /*@Test
+    @Test
     public void writeFile_StringWrites_CloseCalled() throws Exception {
         //Arrange
         App app = new App();
@@ -37,5 +37,5 @@ public class AppTest {
 
         //Assert
         verify(mock).close();
-    }*/
+    }
 }
