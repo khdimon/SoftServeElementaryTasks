@@ -71,7 +71,7 @@ public class ConsoleHelper {
     }
 
     /**
-     * Creates and returns new envelop with given names.
+     * Creates and returns new envelop with given name.
      * Length of sides is entered by user.
      *
      * @param name given name of the envelope

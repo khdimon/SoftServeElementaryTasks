@@ -35,9 +35,6 @@ public class Triangle {
         this.a = a;
         this.b = b;
         this.c = c;
-
-        double p = (a + b + c) / 2;
-        area = Math.sqrt(p * (p - a) * (p - b) * (p - c));
     }
 
     /**
@@ -46,6 +43,11 @@ public class Triangle {
      * @return area of this triangle
      */
     public double getArea() {
+        if (area == 0) {
+            double p = (a + b + c) / 2;
+            area = Math.sqrt(p * (p - a) * (p - b) * (p - c));
+        }
+
         return area;
     }
 

@@ -5,8 +5,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TriangleTest {
-   /* @Test
-    public void isSidesCorrect_CorrectSides_TrueReturned()
+    @Test
+    public void constructor_CorrectSides_TriangleCreated()
             throws Exception {
         //Arrange
         double a = 4.0;
@@ -14,29 +14,35 @@ public class TriangleTest {
         double c = 6.0;
 
         //Act
-        boolean actualResult = Triangle.isSidesCorrect(a, b, c);
-
-        //Assert
-        assertTrue(actualResult);
+        Triangle actualResult = new Triangle("Triangle", a, b, c);
     }
 
-    @Test
-    public void isSidesCorrect_IncorrectSides_FalseReturned()
+    @Test(expected = IllegalArgumentException.class)
+    public void constructor_IncorrectSidesLength_ExceptionThrown()
             throws Exception {
         //Arrange
         double a = 4.0;
         double b = 5.0;
-        double c = 10.0;
+        double c = 20.0;
 
         //Act
-        boolean actualResult = Triangle.isSidesCorrect(a, b, c);
+        Triangle actualResult = new Triangle("Triangle", a, b, c);
+    }
 
-        //Assert
-        assertFalse(actualResult);
+    @Test(expected = IllegalArgumentException.class)
+    public void constructor_NegativeSideLength_ExceptionThrown()
+            throws Exception {
+        //Arrange
+        double a = -4.0;
+        double b = 5.0;
+        double c = 20.0;
+
+        //Act
+        Triangle actualResult = new Triangle("Triangle", a, b, c);
     }
 
     @Test
-    public void getArea_CreatedTriangle_AreaReturned() throws Exception {
+    public void getArea_TriangleCreated_AreaReturned() throws Exception {
         //Arrange
         Triangle triangle =
                 new Triangle("Test Triangle", 3.0, 4.0, 5.0);
@@ -48,5 +54,4 @@ public class TriangleTest {
         //Assert
         assertEquals(expectedArea, actualArea, 0.000001);
     }
-*/
 }

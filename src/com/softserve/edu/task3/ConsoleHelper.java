@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ConsoleHelper {
@@ -31,6 +30,13 @@ public class ConsoleHelper {
         return reader.readLine();
     }
 
+    /**
+     * Creates and returns new triangle with name and
+     * lengths of sides that are entered by user.
+     *
+     * @return created triangle
+     * @throws IOException when IOException occurs
+     */
     private Triangle getTriangleFromUser() throws IOException {
 
         BufferedReader reader =
@@ -62,6 +68,14 @@ public class ConsoleHelper {
         return triangle;
     }
 
+    /**
+     * Gets triangle from user and checks.
+     * Then asks user whether he wants to continue.
+     * If he wants begins from start.
+     * Otherwise the result list of triangles is returned.
+     *
+     * @return the result list of triangles
+     */
     public List<Triangle> getTriangles() {
         List<Triangle> triangles = new ArrayList<>();
 
@@ -86,9 +100,12 @@ public class ConsoleHelper {
         return triangles;
     }
 
-    public void printSortedTriangles(List<Triangle> triangles) {
-        Collections.sort(triangles,
-                (t1, t2) -> Double.compare(t2.getArea(), t1.getArea()));
+    /**
+     * Prints given list of triangles.
+     *
+     * @param triangles given list of triangles
+     */
+    public void printTriangles(List<Triangle> triangles) {
 
         printMessage("======== Triangles list: =========\n");
         for (int i = 0; i < triangles.size(); i++) {
@@ -96,5 +113,4 @@ public class ConsoleHelper {
             printMessage(triangles.get(i).toString() + "\n");
         }
     }
-
 }

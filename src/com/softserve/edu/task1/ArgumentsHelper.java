@@ -15,7 +15,7 @@ public class ArgumentsHelper {
     private String[] args;
 
     /**
-     * Creates new instance of ArgumentsHelper with given args.
+     * Creates new instance of ConsoleHelper with given args.
      *
      * @param args given args
      */
