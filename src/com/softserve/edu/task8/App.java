@@ -174,15 +174,7 @@ public class App {
      * @param args arguments of command line
      */
     public static void main(String[] args) {
-        App app = new App();
-
-        try {
-            double[] boundaries = app.getBoundaries(args);
-            List<Long> numbers = app.getFibonacciInInterval(boundaries);
-            app.printNumbers(numbers);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            app.printInstruction();
-        }
+        ConsoleHelper consoleHelper = new ConsoleHelper();
+        consoleHelper.printFibonacciNumbers(args);
     }
 }
