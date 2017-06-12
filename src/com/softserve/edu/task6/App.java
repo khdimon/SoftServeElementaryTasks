@@ -3,54 +3,28 @@ package com.softserve.edu.task6;
 import java.io.*;
 
 /**
- * Номер билета - шестизначное число.
- * Нужно написать консольное приложение,
- * которое может посчитать количество счастливых билетов.
- * Для выбора алгоритма подсчёта читается текстовый файл.
- * Путь к текстовому файлу задаётся в консоли после запуска программы.
- * Индикаторы алгоритмов:
- * 1 - слово 'Moskow'
- * 2 - слово 'Piter'
- * После задания всех необходимых параметров,
- * программа в консоль должна вывести количество счастливых билетов
- * для указанного способа подсчёта.
+ * The ticket number is six-digit number.
+ * There are two algorithms for define lucky tickets:
+ * <p>1. Moskow. Sum of first 3 digits is equal
+ * to sum of last 3 digits.
+ * <p>2. Piter. Sum of digits in odd positions is equal
+ * to sum of digits in even positions.
+ * <p>
+ * Need to write console application
+ * that can count number of lucky tickets.
+ * For selecting count algorithm text file is read.
+ * Path to the text file is given in console
+ * after start of the program.
+ * The indicates of the algorithm:
+ * <p>1 - word "Moskow"
+ * <p>2 - word "Piter"
+ * <p>
+ * Program must print number of lucky tickets
+ * for given algorithm.
  *
  * @author Dima Kholod
  */
 public class App {
-    /**
-     * Counts lucky tickets by the given algorithm.
-     *
-     * @param key given algorithm
-     * @return counts of lucky tickets.
-     */
-    public int countLuckyTickets(String key) {
-        int count = 0;
-        for (int i = 0; i < 1000000; i++) {
-            int[] digits = {0, 0, 0, 0, 0, 0};
-            int number = i;
-            int j = 5;
-            while (number > 0) {
-                digits[j] = number % 10;
-                number = number / 10;
-                j--;
-            }
-
-            if (key.equals("Moskow")
-                    && (digits[0] + digits[1] + digits[2])
-                    == (digits[3] + digits[4] + digits[5])) {
-                count++;
-            }
-
-            if (key.equals("Piter")
-                    && (digits[0] + digits[2] + digits[4])
-                    == (digits[1] + digits[3] + digits[5])) {
-                count++;
-            }
-        }
-
-        return count;
-    }
 
     /**
      * Starts the program.
@@ -58,36 +32,7 @@ public class App {
      * @param args parameters of the command line
      */
     public static void main(String[] args) {
-
-        System.out.println("Enter path to the file with key.");
-        BufferedReader pathReader =
-                new BufferedReader(new InputStreamReader(System.in));
-        String path = "";
-        try {
-            path = pathReader.readLine();
-        } catch (IOException e) {
-            System.out.println("An input/output error has occurred");
-        }
-
-        App app = new App();
-        File file = new File(path);
-        String key = "";
-
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            key = reader.readLine();
-            reader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
-        } catch (IOException e) {
-            System.out.println("An input/output error has occurred");
-        }
-
-        if (key.equals("Moskow") || key.equals("Piter")) {
-            System.out.println("Quantity of lucky tickets by algorithm "
-                    + key + " is " + app.countLuckyTickets(key));
-        } else {
-            System.out.println("Incorrect key.");
-        }
+        ConsoleHelper consoleHelper = new ConsoleHelper();
+        consoleHelper.printLuckyTicketsNumber();
     }
 }
