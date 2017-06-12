@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 public class PartOfNumberTest {
     @Test
-    public void constructorPartOfNumber_CorrectIndexAndValue_RepresentationReturns()
+    public void getRepresentation_CorrectIndexAndValue_RepresentationReturns()
             throws Exception {
         //Arrange
         int index = 1;
@@ -30,8 +30,6 @@ public class PartOfNumberTest {
         PartOfNumber partOfNumber = new PartOfNumber(index, value);
 
         //Act
-        String actualRepresentation = partOfNumber.getRepresentation();
-
-        //Assert
+        partOfNumber.getRepresentation();
     }
 }
