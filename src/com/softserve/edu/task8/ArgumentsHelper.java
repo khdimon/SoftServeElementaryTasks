@@ -3,6 +3,9 @@ package com.softserve.edu.task8;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
+/**
+ * Gets boundaries of given interval. Prints instructions for user.
+ */
 public class ArgumentsHelper {
 
     private static final String INSTRUCTIONS = "Enter 2 arguments: "
@@ -12,10 +15,22 @@ public class ArgumentsHelper {
 
     private String[] args;
 
+    /**
+     * Creates new ArgumentsHelper with given arguments.
+     *
+     * @param args given arguments
+     */
     public ArgumentsHelper(String[] args) {
         this.args = args;
     }
 
+    /**
+     * Gets boundaries of interval from arguments of this ArgumentsHelper.
+     * If number or format of arguments are incorrect throws
+     * IllegalArgumentException.
+     *
+     * @return pair of boundaries - left and right
+     */
     public Pair<Double, Double> getBoundaries() {
         if (args.length != 2) {
             throw new IllegalArgumentException("Wrong number of arguments!");

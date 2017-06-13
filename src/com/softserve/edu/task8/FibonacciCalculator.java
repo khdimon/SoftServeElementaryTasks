@@ -1,11 +1,27 @@
 package com.softserve.edu.task8;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Allows to calculate Fibonacci numbers.
+ */
 public class FibonacciCalculator {
 
-    public List<Long> getFibonacciInInterval(double left, double right) {
+    /**
+     * Calculates and returns list of Fibonacci numbers in given interval.
+     * If boundaries are negative or left boundary greater than right throws
+     * IllegalArgumentException.
+     *
+     * @param boundaries left and right boundaries of given interval
+     * @return list of Fibonacci numbers
+     */
+    public List<Long> getFibonacciInInterval(Pair<Double, Double> boundaries) {
+        Double left = boundaries.getLeft();
+        Double right = boundaries.getRight();
+
         if (left < 0 || right < 0) {
             throw new IllegalArgumentException("Boundaries can't be negative.");
         }

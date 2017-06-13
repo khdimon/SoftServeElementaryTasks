@@ -5,8 +5,16 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Prints Fibonacci numbers.
+ */
 public class ConsoleHelper {
 
+    /**
+     * Prints Fibonacci numbers in interval given in arguments.
+     *
+     * @param args given arguments
+     */
     public void printFibonacciNumbers(String[] args) {
         ArgumentsHelper argumentsHelper = new ArgumentsHelper(args);
 
@@ -15,7 +23,7 @@ public class ConsoleHelper {
 
             FibonacciCalculator calculator = new FibonacciCalculator();
             List<Long> fibonacciList = calculator.getFibonacciInInterval(
-                    boundaries.getLeft(), boundaries.getRight());
+                    boundaries);
 
             if (fibonacciList.isEmpty()) {
                 System.out.println("No Fibonacci numbers in this interval");
